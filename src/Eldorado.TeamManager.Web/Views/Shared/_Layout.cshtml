@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Eldorado Team Manager</title>
+        
+        <link rel="stylesheet" href="~/assets/fontawesome/css/all.min.css" />
+        <link href="~/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="~/assets/app/css/style.css" rel="stylesheet">
+        <link href="~/assets/jquery/dataTables.bootstrap5.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <main>
+            <header class="p-3 mb-3 border-bottom">
+                <div class="container">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <a href="@Url.Action("Index","Team")" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                            <img class="me-2" width="136" height="56" role="img" src="~/assets/app/images/logo_eldorado.svg" />
+                        </a>
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                            <li>
+                                <a href="@Url.Action("Index","Team")" class="nav-link px-2 link-dark"><i class="fa-solid fa-sitemap"></i> Equipes</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-2 link-dark"><i class="fa-solid fa-people-group"></i> Colaboradores</a>
+                            </li>
+                            <li>
+                                <a class="nav-link px-2 link-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-gear"></i> Administração</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Skills</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("Index","User")">Usuários</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="dropdown text-end">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Vinicius Perroni
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" href="#">Trocar Senha</a></li>
+                                <li><a class="dropdown-item" href="#">Saír</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+                @RenderBody()
+            </div>
+        </main>
+
+        <script src="~/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/assets/jquery/jquery-3.5.1.js"></script>
+        <script src="~/assets/jquery/jquery.dataTables.min.js"></script>
+        <script src="~/assets/jquery/dataTables.bootstrap5.min.js"></script>
+        <script src="~/assets/app/js/initDataTable.js"></script>
+
+        @RenderSection("Scripts", required: false)
+    </body>
+</html>

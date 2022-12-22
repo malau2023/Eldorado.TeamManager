@@ -1,0 +1,49 @@
+﻿@using Eldorado.TeamManager.Domain.Enums;
+@model Eldorado.TeamManager.Web.Models.User.UserViewModel
+
+<h3 class="page-title"><i class="fa fa-gear"></i> @(Model.User.Id == 0 ? "Novo Usuário" : "Editar Usuário") </h3>
+
+<form action="@Url.Action("Save")" method="post" class="row g-3">
+  <input type="hidden" name="Id" value="@Model.User.Id" />
+  
+  <div class="col-md-6">
+    <label class="form-label">Nome:</label>
+    <input type="text" name="FirsName" value="@Model.User.FirsName" required class="form-control" />
+  </div>
+  
+  <div class="col-md-6">
+    <label  class="form-label">Sobrenome</label>
+    <input type="text" name="LastName" value="@Model.User.LastName" required class="form-control" />
+  </div>
+  
+  <div class="col-md-4">
+    <label class="form-label">E-Mail:</label>
+    <input type="text" name="Email" value="@Model.User.Email" required class="form-control" />
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Senha:</label>
+    <input type="password" name="Password" class="form-control" @(Model.User.Id == 0 ? string.Format("required") : string.Empty) />
+  </div>
+
+  <div class="col-md-2">
+    <label class="form-label">Ativo:</label>
+    <select class="form-select" name="Active">
+        <option @(Model.User.Active ? "selected" : string.Empty) value="True">Sim</option>
+        <option @(!Model.User.Active ? "selected" : string.Empty) value="False">Não</option>
+    </select>
+  </div>
+
+  <div class="col-md-2">
+    <label class="form-label">Perfil:</label>
+    <select class="form-select" name="Type" asp-for="@Model.User.Type">
+        <option @(Model.User.Type == UserType.Common ? "selected" : string.Empty) value='Comum'>Comum</option>
+        <option @(Model.User.Type == UserType.Administrator ? "selected" : string.Empty) value='Administrador'>Administrador</option>
+    </select>
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-secondary"> <i class="fa fa-save"></i> Gravar</button>
+    <a href="@Url.Action("Index")" class="btn btn-outline-secondary"><i class="fa fa-left-long"></i> Voltar</a>
+  </div>
+</form>
