@@ -40,10 +40,12 @@ builder.Services.AddSingleton(mapper);
 
 #region Repositories IoC
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 #endregion
 
 #region Services IoC
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ISkillService, SkillService>();
 #endregion
 
 var app = builder.Build();
@@ -53,6 +55,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+
+//a rota básica da aplicação vai ser o controller=Team e a ação Index.
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Team}/{action=Index}/{id?}");

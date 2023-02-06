@@ -1,0 +1,54 @@
+@model Eldorado.TeamManager.Web.Models.Skill.SkillListViewModel
+
+<h3 class="page-title"><i class="fa fa-gear"></i> Skills</h3>
+
+@if (TempData["skillSave"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Ok!</strong> @TempData["skillSave"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["skillDelete"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Ok!</strong> @TempData["skillDelete"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<a href='@Url.Action("Create")' class="btn btn-sm btn-secondary"><i class="fa fa-plus"></i> Nova Skill</a>
+
+<div class="m-2">
+    <table id="table-users" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var Skill in Model.Skills)
+        {
+            <tr>
+                <td>@Skill.Name</td>
+                <td>@Skill.Description</td>
+                <td>
+                    <a href='@Url.Action("Edit", new { id = @Skill.Id })' class="btn btn-sm btn-secondary" title="Editar"><i class="fa fa-edit"></i></a>
+                    <a href='@Url.Action("Delete", new { id = @Skill.Id })' class="btn btn-sm btn-secondary" title="Apagar"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+@section scripts {
+     <script type="text/javascript">
+        $(document).ready(function () {
+            initDataTable("table-users");
+        });
+     </script>
+}
+
+

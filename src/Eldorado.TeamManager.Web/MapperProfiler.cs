@@ -10,6 +10,7 @@ namespace Eldorado.TeamManager.Web
         public MapperProfiler()
         {
             CreateMap<User, UserDto>();
+            CreateMap<Skill, SkillDto>();
         }
     }
 }
