@@ -4,34 +4,40 @@
 <h3 class="page-title"><i class="fa fa-gear"></i> @(Model.Skill.Id == 0 ? "Nova Skill" : "Editar Skill") </h3>
 
 <form action="@Url.Action("Save")" method="post" class="row g-3">
-  <input type="hidden" name="Id" value="@Model.Skill.Id" />
+    <input type="hidden" name="Id" value="@Model.Skill.Id" />
 
-   <div class="col-md-6">
-    <label class="form-label">Nome:</label>
-    <input type="text" name="Name" value="@Model.Skill.Name" required class="form-control" />
-  </div>
+    <div class="col-md-6">
+        <label class="form-label">Nome:</label>
+        <input type="text" name="Name" value="@Model.Skill.Name" required class="form-control" />
+    </div>
 
-  <div class="col-md-6">
-    <label  class="form-label">Descrição:</label>
-    <input type="text" name="Description" value="@Model.Skill.Description" required class="form-control" />
-  </div>
-  
-   <div class="col-md-2">
-    <label class="form-label">Tipos:</label>
-    <select class="form-select" name="Type" asp-for="@Model.Skill.Type">
-        <option @(Model.Skill.Type == SkillType.DataBase ? "selected" : string.Empty) value='DataBase'>Banco de Dados</option>
-        <option @(Model.Skill.Type == SkillType.ProgrammingLanguage ? "selected" : string.Empty) value='ProgrammingLanguage'>Linguagem de Programação</option>
-        <option @(Model.Skill.Type == SkillType.SoftwareTools ?"selected" : string.Empty) value='SoftwareTools'>Ferramentas de Software</option>
-        <option @(Model.Skill.Type == SkillType.FrameWork ? "selected" : string.Empty) value='Framework'>Framework</option>
-        <option @(Model.Skill.Type == SkillType.Methodology ? "selected" : string.Empty) value='Methodology'>Metodologia</option>
-        <option @(Model.Skill.Type == SkillType.DevOpsInfrastructure ? "selected" : string.Empty) value='DevOpsInfrastructure'>Infraestrutura DevOps</option>
-      
-    </select>
-  </div>
+    <div class="col-md-6">
+        <label class="form-label">Descrição:</label>
+        <input type="text" name="Description" value="@Model.Skill.Description" required class="form-control" />
+    </div>
 
-  <div class="col-12">
-    <button type="submit" class="btn btn-secondary"> <i class="fa fa-save"></i> Gravar</button>
-    <a href="@Url.Action("Index")" class="btn btn-outline-secondary"><i class="fa fa-left-long"></i> Voltar</a>
-  </div>
+    <div class="col-md-2">
+        <label class="form-label">Tipos:</label>
+        <select class="form-select" name="Type" asp-for="@Model.Skill.Type">
+            <option @(Model.Skill.Type == SkillType.DataBase ? "selected" : string.Empty) value='DataBase'>Banco de
+                Dados</option>
+            <option @(Model.Skill.Type == SkillType.ProgrammingLanguage ? "selected" : string.Empty)
+                value='ProgrammingLanguage'>Linguagem de Programação</option>
+            <option @(Model.Skill.Type == SkillType.SoftwareTools ? "selected" : string.Empty) value='SoftwareTools'>
+                Ferramentas de Software</option>
+            <option @(Model.Skill.Type == SkillType.FrameWork ? "selected" : string.Empty) value='Framework'>Framework
+            </option>
+            <option @(Model.Skill.Type == SkillType.Methodology ? "selected" : string.Empty) value='Methodology'>
+                Metodologia</option>
+            <option @(Model.Skill.Type == SkillType.DevOpsInfrastructure ? "selected" : string.Empty)
+                value='DevOpsInfrastructure'>Infraestrutura DevOps</option>
+
+        </select>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-secondary"> <i class="fa fa-save"></i> Gravar</button>
+        <a href="@Url.Action("Index")" class="btn btn-outline-secondary"><i class="fa fa-left-long"></i> Voltar</a>
+    </div>
 
 </form>

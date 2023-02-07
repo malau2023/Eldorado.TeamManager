@@ -18,7 +18,7 @@ namespace Eldorado.TeamManager.Web.Controllers
         public IActionResult Index()
         {
             var viewModel = new SkillListViewModel();
-            //viewModel.Skills = _skillService.ListAll();
+            viewModel.Skills = _skillService.ListAll();
 
             return View(viewModel);
         }
