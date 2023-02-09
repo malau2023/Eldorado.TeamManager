@@ -41,11 +41,13 @@ builder.Services.AddSingleton(mapper);
 #region Repositories IoC
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();
+builder.Services.AddScoped<ICollaboratorRepository, CollaboratorRepository>();
 #endregion
 
 #region Services IoC
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISkillService, SkillService>();
+builder.Services.AddScoped<ICollaboratorService, CollaboratorService>();
 #endregion
 
 var app = builder.Build();
