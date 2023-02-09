@@ -9,6 +9,6 @@ namespace Eldorado.TeamManager.Application.Dtos
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
         public string Observation { get; set; }
-        //public List<CollaboratorSkills> collaboratorSkills { get; set; } 
+        public List<CollaboratorSkillDto> CollaboratorSkills{ get; set; }
     }
 }

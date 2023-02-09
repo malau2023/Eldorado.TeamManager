@@ -30,7 +30,6 @@ namespace Eldorado.TeamManager.Domain.Entities
             Email = email;
             Observation = observation;
             CollaboratorSkills = collaboratorSkills;
-
         }
     }
 }

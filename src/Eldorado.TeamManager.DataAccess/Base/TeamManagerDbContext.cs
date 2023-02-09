@@ -13,6 +13,10 @@ namespace Eldorado.TeamManager.DataAccess.Base
 
         public DbSet<User> Users { get; set; }
         public DbSet<Skill> Skills { get; set; }
+        public DbSet<Collaborator> Collaborators { get; set; }
+        public DbSet<CollaboratorSkill> CollaboratorSkills { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

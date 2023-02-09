@@ -26,14 +26,15 @@ namespace Eldorado.TeamManager.Application.Services.Imp
 
         public async Task Create(CollaboratorDto dto)
         {
-            //var collaborator = new Collaborator(dto.Name, dto.BirthDate, dto.RG, dto.Email, dto.observation, dto.skill);
-            //await _collaboratorRepository.Create(collaborator);
+            var collaborator = new Collaborator(dto.Name, dto.RG, dto.BirthDate, dto.Email, dto.Observation, ConvertCollaboratorSkillsDto(dto.CollaboratorSkills));
+
+            await _collaboratorRepository.Create(collaborator);
         }
 
         public async Task Update(CollaboratorDto dto)
         {
             var collaborator = _collaboratorRepository.GetById(dto.Id).Result;
-           //collaborator.Edit(dto.Name, dto.BirthDate, dto.RG, dto.Email, dto.Observation, dto.Skill);
+            collaborator.Edit(dto.Name, dto.RG, dto.BirthDate, dto.Email, dto.Observation, ConvertCollaboratorSkillsDto(dto.CollaboratorSkills));
 
             await _collaboratorRepository.Update(collaborator);
         }
@@ -47,6 +48,19 @@ namespace Eldorado.TeamManager.Application.Services.Imp
         public async Task Delete(int id)
         {
             await _collaboratorRepository.Delete(id);
+        }
+
+        private List<CollaboratorSkill> ConvertCollaboratorSkillsDto(List<CollaboratorSkillDto> dto)
+        {
+            var collaboratorSkills = new List<CollaboratorSkill>();
+
+            foreach (var item in dto)
+            {
+                var collaboratorSkill = new CollaboratorSkill(item.CodCollaborator, item.CodSkill);
+                collaboratorSkills.Add(collaboratorSkill);
+            }
+
+            return collaboratorSkills;
         }
     }
 
