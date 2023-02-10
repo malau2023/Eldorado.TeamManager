@@ -20,7 +20,7 @@ namespace Eldorado.TeamManager.Domain.Entities
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
         public string Observation { get; set; }
-        public List<CollaboratorSkill> CollaboratorSkills { get; set; }
+        public virtual List<CollaboratorSkill> CollaboratorSkills { get; set; }
 
         public void Edit(string name, string rg, DateTime birthDate, string email, string observation, List<CollaboratorSkill> collaboratorSkills)
         {

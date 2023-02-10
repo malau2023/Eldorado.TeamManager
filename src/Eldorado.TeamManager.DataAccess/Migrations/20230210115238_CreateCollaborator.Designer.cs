@@ -3,6 +3,7 @@ using System;
 using Eldorado.TeamManager.DataAccess.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Eldorado.TeamManager.DataAccess.Migrations
 {
     [DbContext(typeof(TeamManagerDbContext))]
-    partial class TeamManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230210115238_CreateCollaborator")]
+    partial class CreateCollaborator
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
