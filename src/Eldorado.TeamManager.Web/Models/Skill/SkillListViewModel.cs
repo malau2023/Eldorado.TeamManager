@@ -7,7 +7,6 @@ namespace Eldorado.TeamManager.Web.Models.Skill
         public SkillListViewModel()
         {
             Skills = new List<SkillDto>();
-
         }
 
         public IEnumerable<SkillDto> Skills { get; set; }

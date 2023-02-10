@@ -1,1 +1,54 @@
-<h1>oi</h1>
+@model Eldorado.TeamManager.Web.Models.Collaborator.CollaboratorListViewModel
+
+<h3 class="page-title"><i class="fa fa-gear"></i>Colaboradores</h3>
+
+@if (TempData["collaboratorSave"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>OK!</strong> @TempData["collaboratorSave"]
+        <button type="button" class="btn-close" data-bs-dimiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["collaboratorDelete"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Ok!</strong> @TempData["collaboratorDelete"]
+        <button type="button" class="btn-close" data-bs-dimiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<a href='@Url.Action("Create")' class="btn btn-sm btn secondary"><i class="fa fa-plus">Novo Colaborador</i></a>
+
+<div class="m-2">
+    <table id="table-users" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Skills</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Collaborator in Model.Collaborators)
+            {
+                <tr>
+                    <td>@Collaborator.Name</td>
+                    <td>@Collaborator.CollaboratorSkills</td>
+                    <td>
+                        <a href='@Url.Action("Edit", new { id = @Collaborator.Id })' class="btn btn-sm btn-secondary"
+                            title="Editar"><i class="fa fa-edit"></i></a>
+                        <a href='@Url.Action("Delete", new { id = @Collaborator.Id })' class="btn btn-sm btn-secondary"
+                            title="Apagar"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            initDataTable("table-users");
+        });
+    </script>
+}
