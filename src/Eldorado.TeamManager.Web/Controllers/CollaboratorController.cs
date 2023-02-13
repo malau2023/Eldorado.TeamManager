@@ -29,7 +29,7 @@ namespace Eldorado.TeamManager.Web.Controllers
             return View ("Form", viewModel);
         }
 
-        public async IActionResult Create(){       
+        public IActionResult Create(){       
             var viewModel = new CollaboratorViewModel();
             viewModel.Collaborator = new CollaboratorDto();
 
