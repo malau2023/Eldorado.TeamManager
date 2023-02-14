@@ -11,32 +11,40 @@ namespace Eldorado.TeamManager.Web.Controllers
     {
         private readonly ICollaboratorService _collaboratorService;
 
-        public CollaboratorController(ICollaboratorService collaboratorService)
+        private readonly ISkillService _skillService;
+
+        public CollaboratorController(ICollaboratorService collaboratorService, ISkillService skillService)
         {
             _collaboratorService = collaboratorService;
+            _skillService = skillService;
         }
-        public IActionResult Index(){
+        public IActionResult Index()
+        {
             var viewModel = new CollaboratorListViewModel();
             viewModel.Collaborators = _collaboratorService.ListAll();
 
             return View(viewModel);
         }
 
-        public async Task<IActionResult> Edit (int id){
+        public async Task<IActionResult> Edit(int id)
+        {
             var viewModel = new CollaboratorViewModel();
             viewModel.Collaborator = await _collaboratorService.GetById(id);
-
-            return View ("Form", viewModel);
-        }
-
-        public IActionResult Create(){       
-            var viewModel = new CollaboratorViewModel();
-            viewModel.Collaborator = new CollaboratorDto();
+            LoadSkills(viewModel);
 
             return View("Form", viewModel);
         }
 
-        public async Task<IActionResult> Save (CollaboratorDto collaborator)
+        public IActionResult Create()
+        {
+            var viewModel = new CollaboratorViewModel();
+            viewModel.Collaborator = new CollaboratorDto();
+            LoadSkills(viewModel);
+
+            return View("Form", viewModel);
+        }
+
+        public async Task<IActionResult> Save(CollaboratorDto collaborator)
         {
             if (collaborator.Id == 0)
             {
@@ -48,17 +56,22 @@ namespace Eldorado.TeamManager.Web.Controllers
                 await _collaboratorService.Update(collaborator);
                 TempData["collaboratorSave"] = "Colaborador editado com sucesso.";
             }
-            
+
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> Delete(int id)
-            {
-                await _collaboratorService.Delete(id);
+        {
+            await _collaboratorService.Delete(id);
 
-                TempData["collaboratorDelete"] = "Colaborador apagado com sucesso.";
+            TempData["collaboratorDelete"] = "Colaborador apagado com sucesso.";
 
-                return RedirectToAction("Index");
-            }
+            return RedirectToAction("Index");
+        }
+
+        private void LoadSkills(CollaboratorViewModel model)
+        {
+            model.Skills = _skillService.ListAll().ToList();
+        }
 
     }
 }

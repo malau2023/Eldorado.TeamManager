@@ -21,7 +21,10 @@ namespace Eldorado.TeamManager.Application.Services.Imp
 
         public IEnumerable<SkillDto> ListAll()
         {
-            var skills = _skillRepository.GetAll();
+            var skills = _skillRepository.GetAll()
+            .OrderBy(x => x.Type)
+            .OrderBy(x => x.Name);
+
             return _mapper.Map<List<SkillDto>>(skills);
         }
 
@@ -53,9 +56,5 @@ namespace Eldorado.TeamManager.Application.Services.Imp
 
         }
     }
-
-
-
-
 }
 
